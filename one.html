@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Michelle C. Petras | E-Portfolio</title>
+<meta name="description" content="Computer Programming student, web developer, graphic designer and video editor.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#faf7f2;--ink:#14213d;--muted:#5b6478;--accent:#ff6b57;--card:#fff;--line:#e8e2d8;--radius:16px}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:Inter,system-ui,sans-serif;background:var(--bg);color:var(--ink);line-height:1.65}
+h1,h2,h3{font-family:'Playfair Display',serif;line-height:1.2}
+a{color:inherit}
+.wrap{max-width:1100px;margin:auto;padding:0 24px}
+section{padding:90px 0}
+.eyebrow{color:var(--accent);font-weight:600;letter-spacing:.12em;font-size:.78rem;text-transform:uppercase;margin-bottom:10px}
+h2{font-size:clamp(1.8rem,4vw,2.5rem);margin-bottom:36px}
+.btn{display:inline-block;padding:13px 26px;border-radius:99px;font-weight:600;text-decoration:none;border:2px solid var(--ink);transition:.25s;font-size:.95rem;cursor:pointer;background:none;font-family:inherit;color:var(--ink)}
+.btn.primary{background:var(--accent);border-color:var(--accent);color:#fff}
+.btn:hover{transform:translateY(-3px);box-shadow:0 8px 20px rgba(20,33,61,.15)}
+.btn:focus-visible,a:focus-visible,input:focus-visible,textarea:focus-visible{outline:3px solid var(--accent);outline-offset:3px}
+/* nav */
+header{position:fixed;top:0;width:100%;z-index:50;background:rgba(250,247,242,.9);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+nav{display:flex;justify-content:space-between;align-items:center;height:68px}
+.logo{font-family:'Playfair Display',serif;font-weight:700;font-size:1.25rem;text-decoration:none}
+.logo span{color:var(--accent)}
+nav ul{display:flex;gap:24px;list-style:none}
+nav ul a{text-decoration:none;font-size:.9rem;color:var(--muted);font-weight:500;transition:.2s}
+nav ul a:hover{color:var(--accent)}
+.burger{display:none;background:none;border:0;font-size:1.7rem;cursor:pointer;color:var(--ink)}
+/* hero */
+#home{min-height:100vh;display:flex;align-items:center;padding-top:90px}
+.hero{display:grid;grid-template-columns:1.2fr .8fr;gap:50px;align-items:center}
+.hero h1{font-size:clamp(2.4rem,6vw,4.2rem);margin-bottom:14px}
+.hero h1 em{color:var(--accent);font-style:normal}
+.title{color:var(--muted);font-weight:500;margin-bottom:20px}
+.hero p.intro{max-width:520px;margin-bottom:28px;color:var(--muted)}
+.btns{display:flex;gap:12px;flex-wrap:wrap}
+.photo{aspect-ratio:4/5;border-radius:200px 200px var(--radius) var(--radius);background:linear-gradient(160deg,var(--accent),var(--ink));overflow:hidden;box-shadow:0 30px 60px rgba(20,33,61,.2);display:grid;place-items:center;color:#fff;text-align:center;padding:20px}
+.photo img{width:100%;height:100%;object-fit:cover}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:26px}
+.chip{background:var(--card);border:1px solid var(--line);padding:6px 14px;border-radius:99px;font-size:.82rem;font-weight:500}
+/* cards */
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:22px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:26px;transition:.3s}
+.card:hover{transform:translateY(-5px);box-shadow:0 14px 30px rgba(20,33,61,.08)}
+.card h3{font-size:1.15rem;margin-bottom:12px}
+.card ul{list-style:none;color:var(--muted);font-size:.92rem}
+.card li{padding:3px 0 3px 18px;position:relative}
+.card li::before{content:"";position:absolute;left:0;top:13px;width:7px;height:7px;border-radius:50%;background:var(--accent)}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:40px}
+.alt{background:#fff;border-block:1px solid var(--line)}
+.todo{color:var(--accent);font-weight:600}
+.meta{font-size:.82rem;color:var(--muted);margin-bottom:8px}
+/* portfolio */
+.filters{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:30px}
+.filters button{padding:9px 20px;border-radius:99px;border:1.5px solid var(--line);background:var(--card);font-family:inherit;font-weight:500;cursor:pointer;transition:.2s;color:var(--ink)}
+.filters button.on,.filters button:hover{background:var(--ink);color:#fff;border-color:var(--ink)}
+.thumb{aspect-ratio:16/10;border-radius:12px;background:linear-gradient(135deg,#ffe3dd,#dfe6f5);display:grid;place-items:center;color:var(--muted);font-size:.85rem;margin-bottom:16px;overflow:hidden;cursor:zoom-in;position:relative}
+.thumb img{width:100%;height:100%;object-fit:cover;transition:.4s}
+.thumb:hover img{transform:scale(1.06)}
+.thumb .play{position:absolute;width:54px;height:54px;border-radius:50%;background:rgba(20,33,61,.8);color:#fff;display:grid;place-items:center;font-size:1.2rem}
+.tag{display:inline-block;font-size:.72rem;font-weight:600;color:var(--accent);text-transform:uppercase;letter-spacing:.08em;margin-bottom:6px}
+.proj p{font-size:.9rem;color:var(--muted);margin-bottom:8px}
+.proj p b{color:var(--ink);font-weight:600}
+.links{display:flex;gap:14px;margin-top:10px}
+.links a{font-weight:600;font-size:.88rem;color:var(--accent)}
+.proj.hide{display:none}
+/* tools */
+.tool-group{margin-bottom:22px}
+.tool-group h3{font-size:1rem;margin-bottom:10px;font-family:Inter,sans-serif;font-weight:600}
+/* form */
+form{display:grid;gap:14px}
+input,textarea{width:100%;padding:14px 16px;border-radius:12px;border:1.5px solid var(--line);font:inherit;background:#fff}
+textarea{min-height:140px;resize:vertical}
+label{font-size:.85rem;font-weight:500}
+.contact-list{list-style:none;color:var(--muted);margin:16px 0}
+.contact-list li{padding:5px 0}
+footer{background:var(--ink);color:#cfd5e3;text-align:center;padding:30px 0;font-size:.88rem}
+/* lightbox */
+#lb{position:fixed;inset:0;background:rgba(10,15,30,.9);display:none;place-items:center;z-index:100;padding:24px}
+#lb.open{display:grid}
+#lb .box{max-width:900px;width:100%;text-align:center;color:#fff}
+#lb img{max-width:100%;max-height:75vh;border-radius:12px}
+#lb iframe,#lb video{width:100%;aspect-ratio:16/9;border:0;border-radius:12px}
+#lb button{position:absolute;top:18px;right:24px;background:none;border:0;color:#fff;font-size:2.2rem;cursor:pointer}
+/* reveal */
+.rv{opacity:0;transform:translateY(24px);transition:.7s}
+.rv.in{opacity:1;transform:none}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}html{scroll-behavior:auto}.rv{opacity:1;transform:none}}
+@media(max-width:820px){
+ .hero,.two{grid-template-columns:1fr}
+ .photo{max-width:320px;margin:auto;order:-1}
+ .burger{display:block}
+ nav ul{position:absolute;top:68px;left:0;right:0;background:var(--bg);flex-direction:column;padding:18px 24px;gap:14px;border-bottom:1px solid var(--line);display:none}
+ nav ul.open{display:flex}
+ section{padding:64px 0}
+}
+</style>
+</head>
+<body>
+
+<header>
+ <div class="wrap">
+  <nav aria-label="Main">
+   <a href="#home" class="logo">Michelle<span>.</span>P</a>
+   <button class="burger" aria-label="Toggle menu" id="burger">☰</button>
+   <ul id="menu">
+    <li><a href="#home">Home</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#education">Education</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#portfolio">Portfolio</a></li>
+    <li><a href="#certificates">Certificates</a></li>
+    <li><a href="#reflection">Reflection</a></li>
+    <li><a href="#contact">Contact</a></li>
+   </ul>
+  </nav>
+ </div>
+</header>
+
+<main>
+<!-- HOME -->
+<section id="home">
+ <div class="wrap hero">
+  <div class="rv">
+   <p class="eyebrow">Hello, I'm</p>
+   <h1>Michelle <em>C. Petras</em></h1>
+   <p class="title">Computer Programming Student | Web Developer | Graphic Designer | Video Editor</p>
+   <p class="intro">A fourth-year BTVTED Computer Programming student who blends code, creativity and real-world customer service experience to build useful, good-looking digital solutions.</p>
+   <div class="btns">
+    <a class="btn primary" href="#portfolio">Explore My Portfolio</a>
+    <a class="btn" href="#about">About Me</a>
+    <a class="btn" href="#contact">Contact Me</a>
+   </div>
+   <div class="chips">
+    <span class="chip">💻 Technical</span><span class="chip">🎨 Creative</span><span class="chip">🎧 Customer Service</span>
+   </div>
+  </div>
+  <div class="photo rv">
+   <img src="profile (2).jpg" alt="Portrait of Michelle C. Petras" style="width:100%;height:100%;object-fit:cover;display:block;border-radius:200px 200px 16px 16px;">
+  </div>
+ </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about" class="alt">
+ <div class="wrap two">
+  <div class="rv">
+   <p class="eyebrow">About Me</p>
+   <h2>Where technology meets creativity.</h2>
+  </div>
+  <div class="rv">
+   <p>I'm a 4th-year Computer Programming student with experience in customer service, technical support and digital creativity. I love combining technology, creativity and problem-solving to create digital solutions that are genuinely useful.</p><br>
+   <p>My time in the BPO industry taught me to communicate clearly, multitask under pressure and troubleshoot calmly. Alongside that, I build websites, design graphics, edit videos and work confidently in Microsoft Office applications.</p>
+  </div>
+ </div>
+</section>
+
+<!-- EDUCATION -->
+<section id="education">
+ <div class="wrap">
+  <p class="eyebrow">Education</p>
+  <h2>Academic background</h2>
+  <div class="grid">
+   <div class="card rv">
+    <p class="meta">Fourth Year · 2023–Present</p>
+    <h3>Bachelor of Technical-Vocational Teacher Education</h3>
+    <ul><li>City College of Davao</li><li>Major in Computer Programming</li></ul>
+   </div>
+   <div class="card rv">
+    <p class="meta">Accountancy, Business, and Management · 2021–2023</p>
+    <h3>Senior High School</h3>
+    <ul><li>Catalunan Pequeño National High School</li></ul>
+   </div>
+  </div>
+ </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills" class="alt">
+ <div class="wrap">
+  <p class="eyebrow">Skills &amp; Expertise</p>
+  <h2>What I bring to the table</h2>
+  <div class="grid">
+   <div class="card rv"><h3>BPO &amp; Customer Service</h3><ul><li>Technical &amp; billing support</li><li>Sales support</li><li>CCTV monitoring</li><li>Customer account assistance</li><li>Handling inquiries and concerns</li><li>Problem-solving &amp; troubleshooting</li></ul></div>
+   <div class="card rv"><h3>Web Development</h3><ul><li>Website design &amp; development</li><li>Front-end (and back-end, where applicable)</li><li>Database management, where applicable</li><li>Responsive design</li><li>Testing &amp; troubleshooting</li></ul></div>
+   <div class="card rv"><h3>Graphic Design</h3><ul><li>Posters &amp; layouts</li><li>Social media graphics</li><li>Promotional materials</li><li>Event posters &amp; banners</li><li>Logo &amp; branding</li></ul></div>
+   <div class="card rv"><h3>Video Editing</h3><ul><li>Cutting &amp; trimming</li><li>Transitions &amp; effects</li><li>Audio synchronization</li><li>Text &amp; subtitles</li><li>Promo, recap &amp; social videos</li></ul></div>
+   <div class="card rv"><h3>Microsoft Office</h3><ul><li>Word: documents &amp; formatting</li><li>Excel: spreadsheets &amp; data</li><li>PowerPoint: presentations</li><li>Publisher: layout &amp; publications</li></ul></div>
+  </div>
+ </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section id="experience">
+ <div class="wrap">
+  <p class="eyebrow">Professional Experience</p>
+  <h2>BPO industry experience</h2>
+  <p style="color:var(--muted);margin:-20px 0 30px">Strengths: communication, multitasking, problem-solving, technical troubleshooting, attention to detail, customer service.</p>
+  <div class="grid" id="exp"></div>
+ </div>
+</section>
+
+<!-- PORTFOLIO -->
+<section id="portfolio" class="alt">
+ <div class="wrap">
+  <p class="eyebrow">Portfolio</p>
+  <h2>Projects &amp; outputs</h2>
+  <div class="filters" role="group" aria-label="Filter projects">
+   <button class="on" data-f="all">All</button>
+   <button data-f="design">Graphic Design</button>
+   <button data-f="video">Video Editing</button>
+  </div>
+  <div class="grid" id="projects"></div>
+ </div>
+</section>
+
+<!-- CERTIFICATES -->
+<section id="certificates">
+ <div class="wrap">
+  <p class="eyebrow">Certificates &amp; Achievements</p>
+  <h2>Recognition &amp; training</h2>
+  <div class="grid" id="certs"></div>
+ </div>
+</section>
+
+<!-- TOOLS -->
+<section id="tools" class="alt">
+ <div class="wrap">
+  <p class="eyebrow">Tools &amp; Technologies</p>
+  <h2>What I work with</h2>
+  <p style="color:var(--muted);margin:-20px 0 24px">Only list tools you've really used. Edit the lists below.</p>
+  <div id="toolbox"></div>
+ </div>
+</section>
+
+<!-- REFLECTION -->
+<section id="reflection">
+ <div class="wrap two">
+  <div class="rv">
+   <p class="eyebrow">Reflection</p>
+   <h2>My learning journey</h2>
+  </div>
+  <div class="rv">
+   <p>As a 4th-year Computer Programming student, I have learned to be more patient, creative, and resourceful. My academic projects helped me develop problem-solving skills, while my BPO experience taught me communication, responsibility, and how to handle pressure.</p><br>
+   <p>Through graphic design, video editing, and web development, I discovered how to combine creativity with technology. Despite the challenges of balancing work and studies, I am proud of my progress. My goal is to continue improving my skills and build a career where I can apply my knowledge, creativity, and experience.</p>
+  </div>
+ </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact" class="alt">
+ <div class="wrap two">
+  <div class="rv" style="grid-column:1 / -1;">
+   <p class="eyebrow">Contact</p>
+   <h2>Let's work together.</h2>
+   <p style="color:var(--muted)">Employers, clients and collaborators, I'd love to hear from you.</p>
+   <ul class="contact-list">
+    <li>✉️ <a href="mailto:michelle.carreon.petras@gmail.com">michelle.carreon.petras@gmail.com</a></li>
+    <li>📞 <a href="tel:+639944561729">09944561729</a></li>
+    <li>📱 <a href="https://www.facebook.com/itschemelle/" target="_blank" rel="noopener">Michelle Carreon</a></li>
+   </ul>
+  </div>
+ </div>
+</section>
+</main>
+
+<footer><div class="wrap">Michelle C. Petras</div></footer>
+
+<div id="lb" role="dialog" aria-modal="true" aria-label="Preview"><button aria-label="Close" id="lbx">×</button><div class="box" id="lbc"></div></div>
+
+<script>
+/* ================= EDIT YOUR CONTENT HERE ================= */
+
+const EMAIL = "michelle.carreon.petras@gmail.com";
+// For a real form backend, set FORM_ENDPOINT to a Formspree URL (https://formspree.io)
+const FORM_ENDPOINT = "";
+
+const experience = [
+ {role:"Technical Billing and Sales", company:"BPO / Customer Service", period:"2023", duties:["Handled billing concerns and account assistance","Provided sales support to customers","Maintained clear communication and service quality"], wins:["Improved customer support experience","Ensured accurate and professional client assistance"], skills:["Billing support","Sales support","Communication"]},
+ {role:"CCTV Monitoring", company:"Security & Monitoring Support", period:"2025", duties:["Monitored surveillance systems and activity","Identified unusual situations and reported them promptly","Maintained focus and accuracy during shifts"], wins:["Supported safety and operational awareness","Ensured quick response to monitoring needs"], skills:["Monitoring","Attention to detail","Alertness"]}
+];
+
+/* Projects.
+ cat: design | video | web
+ img: path to image/thumbnail (e.g. "images/poster1.jpg"); leave "" for placeholder
+ video: YouTube/Drive embed URL, or mp4 path (video only)
+ live / code: links (web only); leave "" if not available, buttons are hidden
+*/
+const projects = [
+ {cat:"design", title:"Sanhs Arnis Team Poster", img:"arnistarp.png", desc:"Sports-themed poster showcasing the athlete's achievement and motivational design concept.", purpose:"To promote the team and highlight the athlete's recognition.", tools:"Canva, Photoshop", role:"Designed the layout, typography, and poster composition"},
+ {cat:"design", title:"Davao Eskrima Club Enrollment Promo", img:"arnisflyer.png", desc:"Promotional flyer for the enrollment and training program for kids and adults.", purpose:"To advertise the club's enrollment campaign and training programs.", tools:"Canva, Graphic Design", role:"Created the campaign poster and promotional layout"},
+ {cat:"design", title:"Filipino Martial Arts Championship Poster", img:"arnisaward.png", desc:"Event poster for the 2nd Inter-School Club Arnis Championship at grassroots level.", purpose:"To promote the event and highlight the tournament details.", tools:"Canva, Photo Editing", role:"Designed the title treatment, event information, and visual arrangement"},
+ {cat:"design", title:"Oyanguren Years Poster", img:"movie.png", desc:"Creative film-style poster with cinematic styling and title treatment for a student production.", purpose:"To present the film concept and build excitement for the project.", tools:"Canva, Photoshop", role:"Conceptualized and designed the poster composition"},
+ {cat:"video", title:"TikTok Content Creator Profile", img:"", video:"https://www.tiktok.com/@.yours.truly28?refer=creator_embed", desc:"TikTok creator profile showcasing short-form content, creative video posts, and social media branding work.", tools:"TikTok, Content Creation, Video Editing", role:"Created and published creative short-form content for audience engagement", live:"https://www.tiktok.com/@.yours.truly28", code:""},
+ {cat:"video", title:"Video Editing Portfolio Folder", img:"", video:"https://drive.google.com/drive/folders/1R9Q_laNDW5pgswvKGAG3YVSRuLYcB-bt?usp=drive_link", desc:"A collection of video editing outputs and creative video work stored in Google Drive.", tools:"CapCut, Video Editing, Creative Content", role:"Edited and compiled multiple video outputs for portfolio use", live:"https://drive.google.com/drive/folders/1R9Q_laNDW5pgswvKGAG3YVSRuLYcB-bt?usp=drive_link", code:""},
+ {cat:"video", title:"City College of Davao Promotional Video 2nd Placer", img:"citycollege.jpg", video:"ccdpromotional.mp4", desc:"Promotional video entry that won 2nd place for the City College of Davao campaign.", tools:"CapCut, Video Editing", role:"Edited the promotional video and assembled the final output"}
+];
+
+const certs = [
+ {title:"Graphic Design Essentials", meta:"Canva · September 11, 2024", desc:"Completed the Graphic Design Essentials course, equivalent to 45 minutes of training.", img:"canvacert.png"},
+ {title:"Teacher Education Students’ Summit 2026", meta:"April 2026", desc:"Participated in the 2nd Teacher Education Students’ Summit with the theme 'Thriving in the 21st Century: Soft Skills as the New Currency for Academic Success.'", img:"educcert.png"},
+ {title:"Virtual Assistant Courses", meta:"VACA Camp · August 2024", desc:"Successfully completed and was certified in Virtual Assistant Courses.", img:"vacert.png"},
+ {title:"International Conference on Technical-Vocational Education 4.0", meta:"October 8, 2026", desc:"Participated in the conference on Human-Centered Innovation in Technical-Vocational Teacher Education.", img:"tlecert.png"},
+ {title:"Automatic Water Irrigation", meta:"Innovation Exhibit · October 2, 2024", desc:"Won 1st place for the Automatic Water Irrigation project during the BTVTEd Day 2024 exhibition.", img:"btvtedcert.jpg"}
+];
+
+const tools = {
+ "Programming & Web Development":["HTML","CSS","JavaScript","C++","Java"],
+ "Graphic Design":["Canva","Adobe Photoshop"],
+ "Video Editing":["CapCut","Filmora"],
+ "Microsoft Office":["Microsoft Word","Microsoft Excel","Microsoft PowerPoint","Microsoft Publisher"]
+};
+
+/* ================= SITE LOGIC ================= */
+const $=s=>document.querySelector(s);
+const names={design:"Graphic Design",video:"Video Editing",web:"Web Development"};
+const li=a=>a.map(x=>`<li>${x}</li>`).join("");
+
+$("#exp").innerHTML=experience.map(e=>`<article class="card rv"><p class="meta">${e.company} · ${e.period}</p><h3>${e.role}</h3>
+<ul>${li(e.duties)}</ul><p class="meta" style="margin-top:12px"><b>Achievements</b></p><ul>${li(e.wins)}</ul>
+<div class="chips">${e.skills.map(s=>`<span class="chip">${s}</span>`).join("")}</div></article>`).join("");
+
+const row=(l,v)=>v?`<p><b>${l}:</b> ${v}</p>`:"";
+$("#projects").innerHTML=projects.map((p,i)=>{
+ const isV=p.cat==="video";
+ const isLinkCard = !!(p.video && (p.video.includes("drive.google.com") || p.video.includes("tiktok.com")));
+ const th = p.img ? `<img src="${p.img}" alt="${p.title}" loading="lazy">` : isLinkCard ? "" : "Preview coming soon";
+ const shouldShowPlay = isV && !isLinkCard;
+ const thumbMarkup = isLinkCard ? "" : `<div class="thumb" tabindex="0" role="button" aria-label="View ${p.title}" data-i="${i}">${th}${shouldShowPlay?'<span class="play">▶</span>':''}</div>`;
+ return `<article class="card proj rv" data-cat="${p.cat}">
+ ${thumbMarkup}
+ <span class="tag">${names[p.cat]}</span><h3>${p.title}</h3>
+ ${row("Overview",p.desc)}${row("Purpose",p.purpose)}${row("Problem",p.problem)}${row("Features",p.features)}${row("Tools",p.tools)}${row("My role",p.role)}
+ <div class="links">${p.live?`<a href="${p.live}" target="_blank" rel="noopener">Open ↗</a>`:""}${p.code?`<a href="${p.code}" target="_blank" rel="noopener">Source code ↗</a>`:""}</div></article>`;
+}).join("");
+
+$("#certs").innerHTML=certs.map((c,i)=>`<article class="card rv">
+ ${c.img?`<div class="thumb" style="margin-bottom:16px; min-height:180px;"><img src="${c.img}" alt="${c.title}" loading="lazy"></div>`:``}
+ <p class="meta">${c.meta}</p>
+ <h3>${c.title}</h3>
+ <p style="color:var(--muted);font-size:.9rem">${c.desc}</p>
+</article>`).join("");
+
+$("#toolbox").innerHTML=Object.entries(tools).map(([g,t])=>`<div class="tool-group"><h3>${g}</h3><div class="chips" style="margin-top:0">${t.map(x=>`<span class="chip">${x}</span>`).join("")}</div></div>`).join("");
+
+// filters
+document.querySelectorAll(".filters button").forEach(b=>b.onclick=()=>{
+ document.querySelectorAll(".filters button").forEach(x=>x.classList.remove("on"));b.classList.add("on");
+ document.querySelectorAll(".proj").forEach(c=>c.classList.toggle("hide",b.dataset.f!=="all"&&c.dataset.cat!==b.dataset.f));
+});
+
+// lightbox
+const lb=$("#lb"),lbc=$("#lbc");
+function openLB(i){
+ const p=projects[i];
+ if(p.live && p.live.includes("drive.google.com")){
+  window.open(p.live, "_blank", "noopener,noreferrer");
+  return;
+ }
+ let h="";
+ if(p.cat==="video"&&p.video){
+  const directVideo = /\.(mp4|webm|ogg|mov)$/i.test(p.video) || !/\.[a-z0-9]+$/i.test(p.video);
+  if(p.video.includes("youtube.com")||p.video.includes("youtu.be")){h=`<iframe src="${p.video}" allowfullscreen title="${p.title}"></iframe>`;}
+  else if(directVideo){h=`<video controls autoplay src="${p.video}"></video>`;}
+  else {h=`<iframe src="${p.video}" allowfullscreen title="${p.title}"></iframe>`;}
+ } else if(p.img){h=`<img src="${p.img}" alt="${p.title}">`}
+ else return;
+ lbc.innerHTML=h+`<p style="margin-top:12px">${p.title}</p>`;lb.classList.add("open");
+}
+document.addEventListener("click",e=>{const t=e.target.closest(".thumb");if(t)openLB(t.dataset.i)});
+document.addEventListener("keydown",e=>{if(e.key==="Escape")closeLB();if(e.key==="Enter"&&e.target.classList.contains("thumb"))openLB(e.target.dataset.i)});
+function closeLB(){lb.classList.remove("open");lbc.innerHTML=""}
+$("#lbx").onclick=closeLB;lb.onclick=e=>{if(e.target===lb)closeLB()};
+
+// menu
+$("#burger").onclick=()=>$("#menu").classList.toggle("open");
+$("#menu").onclick=()=>$("#menu").classList.remove("open");
+
+// reveal on scroll
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add("in");io.unobserve(e.target)}}),{threshold:.12});
+document.querySelectorAll(".rv").forEach(el=>io.observe(el));
+
+// contact form removed; keep email ready for future use if needed
+$("#yr").textContent=new Date().getFullYear();
+</script>
+</body>
+</html>
